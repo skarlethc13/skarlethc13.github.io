@@ -40,7 +40,7 @@ $(document).ready(function () {
     shape: "circle",
     repeat: 3
   };
- dataShapes.push()
+ dataShapes.push(shape)
 
  
 
