@@ -54,11 +54,16 @@ function init() {
   makeSnakeSquare(10, 8);
   snake.head = snake.body[0];
   // TODO 4, Part 3: initialize the apple
-  function init() {
+  
     // ... existing setup code ...
     makeApple(); // Call the function here
-  }
+  
 
+    
+    // TODO 6, Part 1: Initialize the interval
+    updateInterval = setInterval(update, 100);
+  }
+  
   function makeApple() {
     // Example jQuery implementation
     var position = getRandomAvailablePosition();
@@ -69,10 +74,6 @@ function init() {
       })
       .appendTo("#game-board");
   }
-
-  // TODO 6, Part 1: Initialize the interval
-  updateInterval = setInterval(update, 100);
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// PROGRAM FUNCTIONS ////////////////////////////////////
@@ -104,12 +105,19 @@ function checkForNewDirection(event) {
   BONUS: Only allow direction changes to take place if the new direction is
   perpendicular to the current direction
   */
-  activeKey = event.whcih;
-  console.log(activeKey);
+  
   if (activeKey === KEY.LEFT) {
     snake.head.direction = "left";
   }
-
+  if (activeKey === KEY.UP) {
+    snake.head.direction = "up"
+  }
+  if (activeKey === KEY.RIGHT) {
+    snake.head.direction = "right"
+  }
+  if (activeKey === KEY.DOWN) {
+    snake.head.direction = "down"
+  }
   // FILL IN THE REST
 
   // console.log(snake.head.direction);     // uncomment me!
@@ -124,7 +132,7 @@ function moveSnake() {
     stored in the Array snake.body and each part knows its current 
     column/row properties. 
   */
-  for (var i = 0; i < snake.body.length; i++) {
+  for (var i = snake.body.length -1; i > 0; i--) {
     var currentSnakeSquare = snake.body[i];
     var snakeSquareInFront = snake.body[i-1];
 
@@ -329,10 +337,10 @@ function makeSnakeSquare(row, column) {
 function handleKeyDown(event) {
   // TODO 7: make the handleKeyDown function register which key is pressed
   activeKey = event.which;
-  console.log(activeKey);
-  if (activeKey === KEY.LEFT) {
-    snake.head.direction = "left";
-  }
+  // console.log(activeKey);
+  // if (activeKey === KEY.LEFT) {
+  //   snake.head.direction = "left";
+  // }
 
   // If a valid direction key is pressed, start the game
   if (
