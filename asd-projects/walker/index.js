@@ -80,7 +80,19 @@ var walker = {
 
   function handleKeyUp(event) {
     console.log(event.which);
-    if
+    if (event.which === KEY.LEFT) {
+      walker.speedX = 0;
+    }
+    else if (event.which === KEY.RIGHT) {
+      walker.speedY = 0;
+    }
+    else if (event.whcih === KEY.UP) {
+      walker.speedX = 0;
+    }
+    else if (event.which === KEY.DOWN) {
+    walker.speedY = 0;
+    }
+    else{}
   }
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -95,5 +107,32 @@ var walker = {
     // turn off event handlers
     $(document).off();
   }
-  
+  function repositionGameItem(){
+    $("#walker").css("left", walker.x);
+    $("#walker").css("top", walker.y);
+  }
+
+
+  function wallCollision() {
+    // stop the interval timer
+    clearInterval( interval);
+  }
+function wallCollision() {
+  var boardWidth = $("#board").width();
+  var boardHeight = $("#board").height();
+
+  if (walker.posX < 0) {
+    walker.posX -= walker.speedX;
+  }
+  if (walker.posX > boardWidth - $("#walker").width()) {
+    walker.posX -= walker.speedX;
+  }
+  // Top boundary
+  if (walker.posY < 0) {
+    walker.posY -= walker.speedY;
+  }
+  if (walker.posY > boardHeight - $("#walker").height()) {
+    walker.posY -= walker.speedY;
+  }
+}
 }
